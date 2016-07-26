@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="gender_name_list">
+        <item>男</item>
+        <item>女</item>
+    </array>
+    <array name="gender_value_list">
+        <item>male</item>
+        <item>female</item>
+    </array>
+
+    <array name="light_strenght_list">
+        <item>弱光</item>
+        <item>均衡</item>
+        <item>强光</item>
+    </array>
+    <array name="light_value_list">
+        <item>弱光</item>
+        <item>均衡</item>
+        <item>强光</item>
+    </array>
+</resources>
