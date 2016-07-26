@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LauncherActivity</string>
+    <string name="title_activity_expandable_list_adapter_test">ExpandableListAdapterTest</string>
+    <string name="title_activity_test1">TestActivity1</string>
+</resources>
