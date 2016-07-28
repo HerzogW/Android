@@ -7,31 +7,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scheme"
-        android:id="@+id/button1"
+        android:text="百  度"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginTop="88dp"
         android:layout_gravity="center_horizontal" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SchemeHostPort"
+        android:text="查看15005427285"
         android:id="@+id/button2"
+        android:layout_above="@+id/button3"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SchemeHostPath"
+        android:text="拨号15005427285"
         android:id="@+id/button3"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SchemeHostPortPath"
-        android:id="@+id/button4"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SchemeHostPortPathType"
-        android:id="@+id/button5"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

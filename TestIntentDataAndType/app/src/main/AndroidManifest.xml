@@ -11,15 +11,59 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SchemeActivity" />
-        <activity android:name=".SchemeHostPortActivity" />
-        <activity android:name=".SchemeHostPathActivity" />
-        <activity android:name=".SchemeHostPortPathActivity" />
-        <activity android:name=".SchemeHostPortPathTypeActivity"></activity>
+        <activity android:name=".SchemeActivity"
+            android:label="SchemeActivity">
+            <intent-filter>
+                <action android:name="SchemeActivity"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:scheme="lee"></data>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SchemeHostPortActivity"
+            android:label="SchemeHostPortActivity">
+            <intent-filter>
+                <action android:name="SchemeHostPortActivity"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:scheme="lee"
+                    android:host="www.baidu.com"
+                    android:port="88"></data>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SchemeHostPathActivity"
+            android:label="SchemeHostPathActivity">
+            <intent-filter>
+                <action android:name="SchemeHostPathActivity"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:scheme="lee"
+                    android:host="www.baidu.com"
+                    android:path="/mypath"></data>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SchemeHostPortPathActivity"
+            android:label="SchemeHostPortPathActivity">
+            <intent-filter>
+                <action android:name="SchemeHostPortPathActivity"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:scheme="lee"
+                    android:host="www.baidu.com"
+                    android:port="88"
+                    android:path="/mypath"></data>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SchemeHostPortPathTypeActivity"
+            android:label="SchemeHostPortPathTypeActivity">
+            <intent-filter>
+                <action android:name="SchemeHostPortPathTypeActivity"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:scheme="lee"
+                    android:host="www.baidu.com"
+                    android:port="88"
+                    android:path="/mypath"
+                    android:mimeType="abc/xyz"></data>
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>
