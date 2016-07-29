@@ -45,13 +45,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 10, 1000);
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration config) {
-        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            MainActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            MainActivity.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-    }
 }
