@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="1c8fe469088e0056a38ba02e8ced9342138282f8">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_4e3aa91732b41d93549a6bfe57ce791c7054b93a\classes.dex" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.0.0_cdf32d41b76d53dda31e7b45de089032092e4a2a\classes.dex" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="38dc2ab2b2cb5fcd1b862d9c41b8a4d4da6ddfe1">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7a5547efbf6fe7d69fb4be5d321656ca6be4b84f\classes.dex" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.0.0_fcd6559087c2c2e0a4916586bb8785400c695b0c\classes.dex" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\jars\libs\internal_impl-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0_10cb08bd945c1a99cc80ce7e4c775b22fdbaeb16\classes.dex" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="e70f608219ed6b974644c333249ab2bb7b71de98">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.0.0_7dac1e7f3690393b478950dcd8e3193008cc91d4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\v-wenjiw\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\24.0.0\2943c74db6d4346ab8c6531adac91fa05c137c40\support-annotations-24.0.0.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.0.0_29d642bbb4d505fe91ac39fd8be2de94046d5bf4\classes.dex" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.0"
+        sha1="3bd97cfefd783e9de1dd1c30574a6adb44b4409b">
+        <dex dex="E:\PersonalWorkspaces\Android\ContextMenu\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.0.0_bc42a154f1ad7acc595735853ea6d5ced44780e6\classes.dex" />
+    </item>
+
+</items>
