@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8c854b30eca6c442fe842e66cd3b58c5dd08996f">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.1.0_685c36656e17527acac6d3a1d4eadf6475b95b10.jar" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.0\jars\libs\internal_impl-24.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8c7087216946c546f85a1242a2794c0f271e092c">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\internal_impl-24.1.0_92fa8584ffd6087f4892f062356d85beb37e2c2f.jar" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="122c998f54efe8b0576dbd6d16f80444b65f9c45">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_552b9ddd3e3a044de0dc4573136b27255e7d1c62.jar" />
+    </item>
+    <item
+        jar="D:\Androidsdk\extras\android\m2repository\com\android\support\support-annotations\24.1.0\support-annotations-24.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\support-annotations-24.1.0_0d884fa6e693385138c26a363e9b3a6e8acb8ced.jar" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="ba8e8860f7e033c3a503b682337a4bafdf56e6ee">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.1.0_6819f6e3e962ee7761b144e590b11e2dd9e17e29.jar" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="e096a5d8343cc9c5a9f6eded36bd0f4c82f8c83e">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.0_8ed9abde16678cbaeb6cca5dfbed20a9712544cf.jar" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="9340c4f95a4e3916c9ad70296e24576743743712">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.1.0_01d96107172fc732e90a10e408184544aa94ae9e.jar" />
+    </item>
+    <item
+        jar="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="0dd35ac384911d90693d998442ac2e847284d376">
+        <dex dex="E:\PersonalWorkspaces\Android\DownLoadByAsyncTask\app\build\intermediates\pre-dexed\debug\instant-run_650947cdae3a7ff5c7e5865207bbf4ee9c1b6b9e.jar" />
+    </item>
+
+</items>

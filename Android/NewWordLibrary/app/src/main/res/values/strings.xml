@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NewWordLibrary</string>
+    <string name="dialog_name">Result</string>
+</resources>
