@@ -51,7 +51,7 @@ namespace ApiOnBoardingConfigurationTool
 
         private const string LoadingFileMessage = "Loading files...";
 
-        private const string LoadedMessage = "Loaded!\r\nCreate or Edit?";
+        private const string LoadedMessage = "Loaded!";
 
         private const string CommonLoadedSuccessfullyText = "Loaded successfully!";
 
@@ -82,6 +82,20 @@ namespace ApiOnBoardingConfigurationTool
         private const string TemplateConnotFindConfigKeyValue = "Not find the key '{0}' in App.config or its value is empty.";
 
         #endregion
+
+        private string SkuPPEOriginalFileName = string.Empty;
+
+        private string SkuProOriginalFileName = string.Empty;
+
+        private string MeterPPEOriginalFileName = string.Empty;
+
+        private string MeterProOriginalFileName = string.Empty;
+
+
+        private bool SkuPPEFileCreateOrEditFlag = false;//True for Create;False for Edit;
+
+        private bool SkuProFileCreateOrEditFlag = false;//True for Create;False for Edit;
+
 
         private JsonSerializerSettings settingFormat = new JsonSerializerSettings()
         {
@@ -205,6 +219,7 @@ namespace ApiOnBoardingConfigurationTool
                         //LoadApiConfigInfoToPage(apiConfigInfo);
                         loadedConfigurationData = apiConfigInfo;
                         this.ECTextActionMessage.Text = LoadedMessage;
+                        this.ECLabelCreateOrEdit.Text = "Create or Edit?";
                         break;
                     }
                 }
@@ -219,6 +234,7 @@ namespace ApiOnBoardingConfigurationTool
                 LoadApiConfigInfoToPage(loadedConfigurationData);
                 ResetJsonFileTextBox();
                 this.ECTextActionMessage.Text = string.Format("Load '{0}' as a template to create a new ApiConfiguration.\r\nTarget Folder or Zip file will be named as the 'ApiTypeName' field.", loadedConfigurationData.ApiFolderName);
+                this.ECLabelCreateOrEdit.Text = "For Create!";
                 loadedConfigurationData = null;
             }
             else
@@ -228,6 +244,7 @@ namespace ApiOnBoardingConfigurationTool
                     originalFileOrFolderName = string.Empty;
                     this.ApiConfigIcons = new Dictionary<string, string>();
                     ResetAllExtensionConfigurationControls();
+                    this.ECLabelCreateOrEdit.Text = string.Empty;
                 }
                 else
                 {
@@ -245,6 +262,7 @@ namespace ApiOnBoardingConfigurationTool
                 loadedConfigurationData = null;
                 ResetJsonFileTextBox();
                 this.ECTextActionMessage.Text = string.Format("Edit the configuration '{0}'.\r\nTarget Folder or Zip file will be named as original.", originalFileOrFolderName);
+                this.ECLabelCreateOrEdit.Text = "For Edit!";
             }
             else
             {
@@ -266,14 +284,14 @@ namespace ApiOnBoardingConfigurationTool
 
             List<string> selectApiItems = new List<string>();
 
-            for (int i = 0; i < this.ECListItems.CheckedItems.Count; i++)
+            foreach (var item in this.ECListItems.CheckedItems)
             {
-                selectApiItems.Add(this.ECListItems.CheckedItems[i].ToString());
+                selectApiItems.Add(item.ToString());
             }
 
-            for (int i = 0; i < selectApiItems.Count; i++)
+            foreach (var item in selectApiItems)
             {
-                this.ECListItems.Items.Remove(selectApiItems[i]);
+                this.ECListItems.Items.Remove(item);
             }
 
             string ApiCongigurationPPEBlobAccountName = CloudConfigurationManager.GetSetting("ApiCongigurationTestBlobAccountName");
@@ -2149,9 +2167,23 @@ namespace ApiOnBoardingConfigurationTool
                     this.SCTextPPEJsonContent.Text = skuConfigData.Value;
                     this.TabControlSkuPPE.SelectedTab = this.TabSkuPPEJsonContent;
                     this.SCPPETextActionMessage.Text = "Loaded!";
+                    this.SCPPELabelCreateOrEdit.Text = "Create or Edit?";
+                    SkuPPEOriginalFileName = this.SCPPEListItems.SelectedItem.ToString();
                     break;
                 }
             }
+        }
+
+        private void SCPPEBtnCreate_Click(object sender, EventArgs e)
+        {
+            SkuPPEFileCreateOrEditFlag = true;
+            this.SCPPELabelCreateOrEdit.Text = "For Create!";
+        }
+
+        private void SCPPEBtnEdit_Click(object sender, EventArgs e)
+        {
+            SkuPPEFileCreateOrEditFlag = false;
+            this.SCPPETextActionMessage.Text = "For Edit!";
         }
 
         private void SCPPEBtnDeleteFromPPEBlob_Click(object sender, EventArgs e)
@@ -2187,6 +2219,10 @@ namespace ApiOnBoardingConfigurationTool
             foreach (var item in this.SCPPEListItems.CheckedItems)
             {
                 selectedItems.Add(item.ToString());
+            }
+
+            foreach (var item in selectedItems)
+            {
                 this.SCPPEListItems.Items.Remove(item);
             }
 
@@ -2474,11 +2510,6 @@ namespace ApiOnBoardingConfigurationTool
 
         private void SCBtnUploadToPPE_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirm to upload to PPE Blob?", AlertTitle, MessageBoxButtons.OKCancel) != DialogResult.OK)
-            {
-                return;
-            }
-
             StringBuilder ErrorMessage = new StringBuilder();
             if (string.IsNullOrWhiteSpace(this.SCTextPPEJsonContent.Text))
             {
@@ -2516,8 +2547,23 @@ namespace ApiOnBoardingConfigurationTool
                 return;
             }
 
+            string tempFileName = string.Empty;
+            if (!SkuPPEFileCreateOrEditFlag)
+            {
+                tempFileName = string.Format("{0}.json", SkuPPEOriginalFileName);
+            }
+            else
+            {
+                tempFileName = string.Format("{0}.json", skuConfigEntity.name.Replace(".", ""));
+            }
+
+            if (MessageBox.Show(string.Format("Confirm to upload to PPE Blob?\r\nIt will be named as \"{0}\"!", tempFileName), AlertTitle, MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                return;
+            }
+
             StorageCredentials credentials = new StorageCredentials(ApiCongigurationPPEBlobAccountName, ApiConfigurationPPEBlobAccountKey, "AccountKey");
-            string tempFileName = string.Format("{0}.json", skuConfigEntity.name.Replace(".", ""));
+
             string jsonContent = JsonConvert.SerializeObject(skuConfigEntity, specialSettingFormat);
             byte[] array = Encoding.ASCII.GetBytes(jsonContent);
 
@@ -2637,11 +2683,27 @@ namespace ApiOnBoardingConfigurationTool
                     this.SCTextProSkuItems.Text = JsonConvert.SerializeObject(skuConfigEntity.skus, specialSettingFormat);
                     this.SCTextProJsonContent.Text = skuConfigData.Value;
                     this.TabControlSkuPro.SelectedTab = this.TabSkuProJsonContent;
-                    this.SCPPETextActionMessage.Text = "Loaded!";
+                    this.SCProTextActionMessage.Text = "Loaded!";
+                    this.SCProLabelCreateOrEdit.Text = "Create or Edit?";
+                    SkuProOriginalFileName = this.SCProListItems.SelectedItem.ToString();
                     break;
                 }
             }
         }
+
+
+        private void SCProBtnCreate_Click(object sender, EventArgs e)
+        {
+            SkuProFileCreateOrEditFlag = true;
+            this.SCProLabelCreateOrEdit.Text = "For Create!";
+        }
+
+        private void SCProBtnEdit_Click(object sender, EventArgs e)
+        {
+            SkuProFileCreateOrEditFlag = false;
+            this.SCProLabelCreateOrEdit.Text = "For Edit!";
+        }
+
 
         private void SCProBtnDeleteFromPPEBlob_Click(object sender, EventArgs e)
         {
@@ -2676,6 +2738,10 @@ namespace ApiOnBoardingConfigurationTool
             foreach (var item in this.SCProListItems.CheckedItems)
             {
                 selectedItems.Add(item.ToString());
+            }
+
+            foreach (var item in selectedItems)
+            {
                 this.SCProListItems.Items.Remove(item);
             }
 
@@ -2999,13 +3065,24 @@ namespace ApiOnBoardingConfigurationTool
                 return;
             }
 
-            if (MessageBox.Show("Confirm to upload to PPE Blob?", AlertTitle, MessageBoxButtons.OKCancel) != DialogResult.OK)
+            string tempFileName = string.Empty;
+            if (!SkuProFileCreateOrEditFlag)
+            {
+                tempFileName = string.Format("{0}.json", SkuProOriginalFileName);
+            }
+            else
+            {
+                tempFileName = string.Format("{0}.json", skuConfigEntity.name.Replace(".", ""));
+            }
+
+            if (MessageBox.Show(string.Format("Confirm to upload to PPE Blob?\r\nIt will be named as \"{0}\"!", tempFileName), AlertTitle, MessageBoxButtons.OKCancel) != DialogResult.OK)
             {
                 return;
             }
 
             StorageCredentials credentials = new StorageCredentials(ApiCongigurationProBlobAccountName, ApiConfigurationProBlobAccountKey, "AccountKey");
-            string tempFileName = string.Format("{0}.json", skuConfigEntity.name.Replace(".", ""));
+
+
             string jsonContent = JsonConvert.SerializeObject(skuConfigEntity, specialSettingFormat);
             byte[] array = Encoding.ASCII.GetBytes(jsonContent);
 
@@ -3118,13 +3195,26 @@ namespace ApiOnBoardingConfigurationTool
                         return;
                     }
 
-                    this.MCPPETextFileName.Text = this.MCPPEListItems.SelectedItem.ToString();
+                    MeterPPEOriginalFileName = this.MCPPEListItems.SelectedItem.ToString();
                     this.MCTextPPEJsonContent.Text = meterConfigData.Value;
                     this.TabControlMeterPPE.SelectedTab = this.TabMeterPPEJsonContent;
                     this.MCPPETextActionMessage.Text = "Loaded!";
+                    this.MCPPELabelCreateOrEdit.Text = "Create or Edit?";
                     break;
                 }
             }
+        }
+
+        private void MCPPEBtnCreate_Click(object sender, EventArgs e)
+        {
+            this.MCPPETextFileName.Text = string.Empty;
+            this.MCPPELabelCreateOrEdit.Text = "For Create!";
+        }
+
+        private void MCPPEBtnEdit_Click(object sender, EventArgs e)
+        {
+            this.MCPPETextFileName.Text = MeterPPEOriginalFileName;
+            this.MCPPELabelCreateOrEdit.Text = "For Edit!";
         }
 
         private void MCPPEBtnDeleteFromPPEBlob_Click(object sender, EventArgs e)
@@ -3160,6 +3250,10 @@ namespace ApiOnBoardingConfigurationTool
             foreach (var item in this.MCPPEListItems.CheckedItems)
             {
                 selectedItems.Add(item.ToString());
+            }
+
+            foreach (var item in selectedItems)
+            {
                 this.MCPPEListItems.Items.Remove(item);
             }
 
@@ -3525,13 +3619,26 @@ namespace ApiOnBoardingConfigurationTool
                         return;
                     }
 
-                    this.MCProTextFileName.Text = this.MCProListItems.SelectedItem.ToString();
+                    MeterProOriginalFileName = this.MCProListItems.SelectedItem.ToString();
                     this.MCTextProJsonContent.Text = meterConfigData.Value;
                     this.TabControlMeterPro.SelectedTab = this.TabMeterProJsonContent;
                     this.MCProTextActionMessage.Text = "Loaded!";
+                    this.MCProLabelCreateOrEdit.Text = "Create or Edit?";
                     break;
                 }
             }
+        }
+
+        private void MCProBtnCreate_Click(object sender, EventArgs e)
+        {
+            this.MCProTextFileName.Text = string.Empty;
+            this.MCProLabelCreateOrEdit.Text = "For Create!";
+        }
+
+        private void MCProBtnEdit_Click(object sender, EventArgs e)
+        {
+            this.MCProTextFileName.Text = MeterProOriginalFileName;
+            this.MCProLabelCreateOrEdit.Text = "For Edit?";
         }
 
         private void MCProBtnDeleteFromPPEBlob_Click(object sender, EventArgs e)
@@ -3567,6 +3674,10 @@ namespace ApiOnBoardingConfigurationTool
             foreach (var item in this.MCProListItems.CheckedItems)
             {
                 selectedItems.Add(item.ToString());
+            }
+
+            foreach (var item in selectedItems)
+            {
                 this.MCProListItems.Items.Remove(item);
             }
 
@@ -3894,5 +4005,6 @@ namespace ApiOnBoardingConfigurationTool
                 MessageBox.Show(ex.Message, ExceptionTitle);
             }
         }
+
     }
 }

@@ -191,6 +191,7 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox46 = new System.Windows.Forms.GroupBox();
+            this.SCPPELabelCreateOrEdit = new System.Windows.Forms.Label();
             this.SCPPETextActionMessage = new System.Windows.Forms.TextBox();
             this.SCBtnUploadToPPE = new System.Windows.Forms.Button();
             this.TabControlSkuPPE = new System.Windows.Forms.TabControl();
@@ -241,6 +242,8 @@
             this.groupBox47 = new System.Windows.Forms.GroupBox();
             this.SCTextPPEJsonContent = new System.Windows.Forms.TextBox();
             this.groupBox44 = new System.Windows.Forms.GroupBox();
+            this.SCPPEBtnEdit = new System.Windows.Forms.Button();
+            this.SCPPEBtnCreate = new System.Windows.Forms.Button();
             this.SCPPEBtnDeleteFromPPEBlob = new System.Windows.Forms.Button();
             this.SCPPEBtnLoadFromLocal = new System.Windows.Forms.Button();
             this.SCPPEBtnLoadFromPPE = new System.Windows.Forms.Button();
@@ -294,6 +297,7 @@
             this.groupBox48 = new System.Windows.Forms.GroupBox();
             this.SCTextProJsonContent = new System.Windows.Forms.TextBox();
             this.groupBox45 = new System.Windows.Forms.GroupBox();
+            this.SCProLabelCreateOrEdit = new System.Windows.Forms.Label();
             this.SCProTextActionMessage = new System.Windows.Forms.TextBox();
             this.groupBox31 = new System.Windows.Forms.GroupBox();
             this.SCProTextStorageAccountKey = new System.Windows.Forms.TextBox();
@@ -302,6 +306,8 @@
             this.label85 = new System.Windows.Forms.Label();
             this.SCProTextStorageAccount = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.SCProBtnEdit = new System.Windows.Forms.Button();
+            this.SCProBtnCreate = new System.Windows.Forms.Button();
             this.SCProBtnDeleteFromPPEBlob = new System.Windows.Forms.Button();
             this.SCProBtnLoadFromLocal = new System.Windows.Forms.Button();
             this.SCProBtnLoadFromPPE = new System.Windows.Forms.Button();
@@ -348,8 +354,11 @@
             this.groupBox52 = new System.Windows.Forms.GroupBox();
             this.MCTextPPEJsonContent = new System.Windows.Forms.TextBox();
             this.groupBox49 = new System.Windows.Forms.GroupBox();
+            this.MCPPELabelCreateOrEdit = new System.Windows.Forms.Label();
             this.MCPPETextActionMessage = new System.Windows.Forms.TextBox();
             this.groupBox50 = new System.Windows.Forms.GroupBox();
+            this.MCPPEBtnEdit = new System.Windows.Forms.Button();
+            this.MCPPEBtnCreate = new System.Windows.Forms.Button();
             this.MCPPEBtnDeleteFromPPEBlob = new System.Windows.Forms.Button();
             this.MCPPEBtnLoadFromLocal = new System.Windows.Forms.Button();
             this.MCPPEBtnLoadFromPPE = new System.Windows.Forms.Button();
@@ -360,6 +369,7 @@
             this.MCProTextFileName = new System.Windows.Forms.TextBox();
             this.label71 = new System.Windows.Forms.Label();
             this.groupBox51 = new System.Windows.Forms.GroupBox();
+            this.MCProLabelCreateOrEdit = new System.Windows.Forms.Label();
             this.MCProTextActionMessage = new System.Windows.Forms.TextBox();
             this.TabControlMeterPro = new System.Windows.Forms.TabControl();
             this.TabMeterProFields = new System.Windows.Forms.TabPage();
@@ -401,12 +411,15 @@
             this.label87 = new System.Windows.Forms.Label();
             this.MCProTextStorageAccount = new System.Windows.Forms.TextBox();
             this.groupBox40 = new System.Windows.Forms.GroupBox();
+            this.MCProBtnEdit = new System.Windows.Forms.Button();
+            this.MCProBtnCreate = new System.Windows.Forms.Button();
             this.MCProBtnLoadFromLocal = new System.Windows.Forms.Button();
             this.MCProBtnDeleteFromPPEBlob = new System.Windows.Forms.Button();
             this.MCProListItems = new System.Windows.Forms.CheckedListBox();
             this.MCProBtnLoadFromPPE = new System.Windows.Forms.Button();
             this.ECFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.ECLabelCreateOrEdit = new System.Windows.Forms.Label();
             this.TabTotal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox43.SuspendLayout();
@@ -545,6 +558,7 @@
             // 
             this.groupBox43.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox43.Controls.Add(this.ECLabelCreateOrEdit);
             this.groupBox43.Controls.Add(this.ECTextActionMessage);
             this.groupBox43.Location = new System.Drawing.Point(6, 578);
             this.groupBox43.Name = "groupBox43";
@@ -564,7 +578,7 @@
             this.ECTextActionMessage.Multiline = true;
             this.ECTextActionMessage.Name = "ECTextActionMessage";
             this.ECTextActionMessage.ReadOnly = true;
-            this.ECTextActionMessage.Size = new System.Drawing.Size(152, 132);
+            this.ECTextActionMessage.Size = new System.Drawing.Size(152, 106);
             this.ECTextActionMessage.TabIndex = 8;
             // 
             // panel1
@@ -2519,6 +2533,7 @@
             // groupBox46
             // 
             this.groupBox46.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox46.Controls.Add(this.SCPPELabelCreateOrEdit);
             this.groupBox46.Controls.Add(this.SCPPETextActionMessage);
             this.groupBox46.Location = new System.Drawing.Point(6, 578);
             this.groupBox46.Name = "groupBox46";
@@ -2526,6 +2541,15 @@
             this.groupBox46.TabIndex = 13;
             this.groupBox46.TabStop = false;
             this.groupBox46.Text = "Message";
+            // 
+            // SCPPELabelCreateOrEdit
+            // 
+            this.SCPPELabelCreateOrEdit.AutoSize = true;
+            this.SCPPELabelCreateOrEdit.ForeColor = System.Drawing.Color.Red;
+            this.SCPPELabelCreateOrEdit.Location = new System.Drawing.Point(6, 107);
+            this.SCPPELabelCreateOrEdit.Name = "SCPPELabelCreateOrEdit";
+            this.SCPPELabelCreateOrEdit.Size = new System.Drawing.Size(0, 13);
+            this.SCPPELabelCreateOrEdit.TabIndex = 5;
             // 
             // SCPPETextActionMessage
             // 
@@ -2535,7 +2559,7 @@
             this.SCPPETextActionMessage.Location = new System.Drawing.Point(6, 19);
             this.SCPPETextActionMessage.Multiline = true;
             this.SCPPETextActionMessage.Name = "SCPPETextActionMessage";
-            this.SCPPETextActionMessage.Size = new System.Drawing.Size(152, 100);
+            this.SCPPETextActionMessage.Size = new System.Drawing.Size(149, 73);
             this.SCPPETextActionMessage.TabIndex = 0;
             // 
             // SCBtnUploadToPPE
@@ -3135,6 +3159,8 @@
             // 
             this.groupBox44.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox44.Controls.Add(this.SCPPEBtnEdit);
+            this.groupBox44.Controls.Add(this.SCPPEBtnCreate);
             this.groupBox44.Controls.Add(this.SCPPEBtnDeleteFromPPEBlob);
             this.groupBox44.Controls.Add(this.SCPPEBtnLoadFromLocal);
             this.groupBox44.Controls.Add(this.SCPPEBtnLoadFromPPE);
@@ -3145,6 +3171,28 @@
             this.groupBox44.TabIndex = 5;
             this.groupBox44.TabStop = false;
             this.groupBox44.Text = "Action and Review";
+            // 
+            // SCPPEBtnEdit
+            // 
+            this.SCPPEBtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SCPPEBtnEdit.Location = new System.Drawing.Point(88, 507);
+            this.SCPPEBtnEdit.Name = "SCPPEBtnEdit";
+            this.SCPPEBtnEdit.Size = new System.Drawing.Size(70, 23);
+            this.SCPPEBtnEdit.TabIndex = 16;
+            this.SCPPEBtnEdit.Text = "Edit";
+            this.SCPPEBtnEdit.UseVisualStyleBackColor = true;
+            this.SCPPEBtnEdit.Click += new System.EventHandler(this.SCPPEBtnEdit_Click);
+            // 
+            // SCPPEBtnCreate
+            // 
+            this.SCPPEBtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SCPPEBtnCreate.Location = new System.Drawing.Point(6, 508);
+            this.SCPPEBtnCreate.Name = "SCPPEBtnCreate";
+            this.SCPPEBtnCreate.Size = new System.Drawing.Size(70, 23);
+            this.SCPPEBtnCreate.TabIndex = 15;
+            this.SCPPEBtnCreate.Text = "Create";
+            this.SCPPEBtnCreate.UseVisualStyleBackColor = true;
+            this.SCPPEBtnCreate.Click += new System.EventHandler(this.SCPPEBtnCreate_Click);
             // 
             // SCPPEBtnDeleteFromPPEBlob
             // 
@@ -3191,7 +3239,7 @@
             this.SCPPEListItems.FormattingEnabled = true;
             this.SCPPEListItems.Location = new System.Drawing.Point(6, 77);
             this.SCPPEListItems.Name = "SCPPEListItems";
-            this.SCPPEListItems.Size = new System.Drawing.Size(152, 454);
+            this.SCPPEListItems.Size = new System.Drawing.Size(152, 424);
             this.SCPPEListItems.TabIndex = 11;
             this.SCPPEListItems.DoubleClick += new System.EventHandler(this.SCPPEListItems_DoubleClick);
             // 
@@ -3578,7 +3626,8 @@
             // 
             // SCTextProSkuItemSkuType
             // 
-            this.SCTextProSkuItemSkuType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SCTextProSkuItemSkuType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SCTextProSkuItemSkuType.BackColor = System.Drawing.SystemColors.Window;
             this.SCTextProSkuItemSkuType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SCTextProSkuItemSkuType.Location = new System.Drawing.Point(547, 19);
@@ -3589,7 +3638,6 @@
             // 
             // label38
             // 
-            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label38.AutoSize = true;
             this.label38.BackColor = System.Drawing.Color.GreenYellow;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3601,8 +3649,6 @@
             // 
             // SCTextProSkuItemTier
             // 
-            this.SCTextProSkuItemTier.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.SCTextProSkuItemTier.BackColor = System.Drawing.SystemColors.Window;
             this.SCTextProSkuItemTier.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SCTextProSkuItemTier.Location = new System.Drawing.Point(337, 19);
@@ -3796,6 +3842,7 @@
             // groupBox45
             // 
             this.groupBox45.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox45.Controls.Add(this.SCProLabelCreateOrEdit);
             this.groupBox45.Controls.Add(this.SCProTextActionMessage);
             this.groupBox45.Location = new System.Drawing.Point(6, 578);
             this.groupBox45.Name = "groupBox45";
@@ -3803,6 +3850,15 @@
             this.groupBox45.TabIndex = 5;
             this.groupBox45.TabStop = false;
             this.groupBox45.Text = "Message";
+            // 
+            // SCProLabelCreateOrEdit
+            // 
+            this.SCProLabelCreateOrEdit.AutoSize = true;
+            this.SCProLabelCreateOrEdit.ForeColor = System.Drawing.Color.Red;
+            this.SCProLabelCreateOrEdit.Location = new System.Drawing.Point(6, 107);
+            this.SCProLabelCreateOrEdit.Name = "SCProLabelCreateOrEdit";
+            this.SCProLabelCreateOrEdit.Size = new System.Drawing.Size(0, 13);
+            this.SCProLabelCreateOrEdit.TabIndex = 5;
             // 
             // SCProTextActionMessage
             // 
@@ -3814,7 +3870,7 @@
             this.SCProTextActionMessage.Location = new System.Drawing.Point(6, 19);
             this.SCProTextActionMessage.Multiline = true;
             this.SCProTextActionMessage.Name = "SCProTextActionMessage";
-            this.SCProTextActionMessage.Size = new System.Drawing.Size(149, 100);
+            this.SCProTextActionMessage.Size = new System.Drawing.Size(149, 73);
             this.SCProTextActionMessage.TabIndex = 3;
             // 
             // groupBox31
@@ -3888,6 +3944,8 @@
             // 
             this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox13.Controls.Add(this.SCProBtnEdit);
+            this.groupBox13.Controls.Add(this.SCProBtnCreate);
             this.groupBox13.Controls.Add(this.SCProBtnDeleteFromPPEBlob);
             this.groupBox13.Controls.Add(this.SCProBtnLoadFromLocal);
             this.groupBox13.Controls.Add(this.SCProBtnLoadFromPPE);
@@ -3898,6 +3956,28 @@
             this.groupBox13.TabIndex = 0;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Action and Review";
+            // 
+            // SCProBtnEdit
+            // 
+            this.SCProBtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SCProBtnEdit.Location = new System.Drawing.Point(88, 507);
+            this.SCProBtnEdit.Name = "SCProBtnEdit";
+            this.SCProBtnEdit.Size = new System.Drawing.Size(70, 23);
+            this.SCProBtnEdit.TabIndex = 18;
+            this.SCProBtnEdit.Text = "Edit";
+            this.SCProBtnEdit.UseVisualStyleBackColor = true;
+            this.SCProBtnEdit.Click += new System.EventHandler(this.SCProBtnEdit_Click);
+            // 
+            // SCProBtnCreate
+            // 
+            this.SCProBtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SCProBtnCreate.Location = new System.Drawing.Point(6, 508);
+            this.SCProBtnCreate.Name = "SCProBtnCreate";
+            this.SCProBtnCreate.Size = new System.Drawing.Size(70, 23);
+            this.SCProBtnCreate.TabIndex = 17;
+            this.SCProBtnCreate.Text = "Create";
+            this.SCProBtnCreate.UseVisualStyleBackColor = true;
+            this.SCProBtnCreate.Click += new System.EventHandler(this.SCProBtnCreate_Click);
             // 
             // SCProBtnDeleteFromPPEBlob
             // 
@@ -3942,7 +4022,7 @@
             this.SCProListItems.FormattingEnabled = true;
             this.SCProListItems.Location = new System.Drawing.Point(6, 77);
             this.SCProListItems.Name = "SCProListItems";
-            this.SCProListItems.Size = new System.Drawing.Size(152, 454);
+            this.SCProListItems.Size = new System.Drawing.Size(152, 424);
             this.SCProListItems.TabIndex = 0;
             this.SCProListItems.DoubleClick += new System.EventHandler(this.SCProListItems_DoubleClick);
             // 
@@ -4153,6 +4233,8 @@
             // 
             // MCTextPPECallCountUnit
             // 
+            this.MCTextPPECallCountUnit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MCTextPPECallCountUnit.Location = new System.Drawing.Point(609, 45);
             this.MCTextPPECallCountUnit.Name = "MCTextPPECallCountUnit";
             this.MCTextPPECallCountUnit.Size = new System.Drawing.Size(105, 20);
@@ -4428,6 +4510,7 @@
             // groupBox49
             // 
             this.groupBox49.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox49.Controls.Add(this.MCPPELabelCreateOrEdit);
             this.groupBox49.Controls.Add(this.MCPPETextActionMessage);
             this.groupBox49.Location = new System.Drawing.Point(6, 578);
             this.groupBox49.Name = "groupBox49";
@@ -4435,6 +4518,15 @@
             this.groupBox49.TabIndex = 9;
             this.groupBox49.TabStop = false;
             this.groupBox49.Text = "Message";
+            // 
+            // MCPPELabelCreateOrEdit
+            // 
+            this.MCPPELabelCreateOrEdit.AutoSize = true;
+            this.MCPPELabelCreateOrEdit.ForeColor = System.Drawing.Color.Red;
+            this.MCPPELabelCreateOrEdit.Location = new System.Drawing.Point(6, 107);
+            this.MCPPELabelCreateOrEdit.Name = "MCPPELabelCreateOrEdit";
+            this.MCPPELabelCreateOrEdit.Size = new System.Drawing.Size(0, 13);
+            this.MCPPELabelCreateOrEdit.TabIndex = 5;
             // 
             // MCPPETextActionMessage
             // 
@@ -4446,13 +4538,15 @@
             this.MCPPETextActionMessage.Location = new System.Drawing.Point(6, 19);
             this.MCPPETextActionMessage.Multiline = true;
             this.MCPPETextActionMessage.Name = "MCPPETextActionMessage";
-            this.MCPPETextActionMessage.Size = new System.Drawing.Size(149, 100);
+            this.MCPPETextActionMessage.Size = new System.Drawing.Size(149, 73);
             this.MCPPETextActionMessage.TabIndex = 3;
             // 
             // groupBox50
             // 
             this.groupBox50.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox50.Controls.Add(this.MCPPEBtnEdit);
+            this.groupBox50.Controls.Add(this.MCPPEBtnCreate);
             this.groupBox50.Controls.Add(this.MCPPEBtnDeleteFromPPEBlob);
             this.groupBox50.Controls.Add(this.MCPPEBtnLoadFromLocal);
             this.groupBox50.Controls.Add(this.MCPPEBtnLoadFromPPE);
@@ -4463,6 +4557,28 @@
             this.groupBox50.TabIndex = 8;
             this.groupBox50.TabStop = false;
             this.groupBox50.Text = "Action and Review";
+            // 
+            // MCPPEBtnEdit
+            // 
+            this.MCPPEBtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.MCPPEBtnEdit.Location = new System.Drawing.Point(88, 508);
+            this.MCPPEBtnEdit.Name = "MCPPEBtnEdit";
+            this.MCPPEBtnEdit.Size = new System.Drawing.Size(70, 23);
+            this.MCPPEBtnEdit.TabIndex = 18;
+            this.MCPPEBtnEdit.Text = "Edit";
+            this.MCPPEBtnEdit.UseVisualStyleBackColor = true;
+            this.MCPPEBtnEdit.Click += new System.EventHandler(this.MCPPEBtnEdit_Click);
+            // 
+            // MCPPEBtnCreate
+            // 
+            this.MCPPEBtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.MCPPEBtnCreate.Location = new System.Drawing.Point(6, 508);
+            this.MCPPEBtnCreate.Name = "MCPPEBtnCreate";
+            this.MCPPEBtnCreate.Size = new System.Drawing.Size(70, 23);
+            this.MCPPEBtnCreate.TabIndex = 17;
+            this.MCPPEBtnCreate.Text = "Create";
+            this.MCPPEBtnCreate.UseVisualStyleBackColor = true;
+            this.MCPPEBtnCreate.Click += new System.EventHandler(this.MCPPEBtnCreate_Click);
             // 
             // MCPPEBtnDeleteFromPPEBlob
             // 
@@ -4507,7 +4623,7 @@
             this.MCPPEListItems.FormattingEnabled = true;
             this.MCPPEListItems.Location = new System.Drawing.Point(6, 77);
             this.MCPPEListItems.Name = "MCPPEListItems";
-            this.MCPPEListItems.Size = new System.Drawing.Size(152, 454);
+            this.MCPPEListItems.Size = new System.Drawing.Size(152, 424);
             this.MCPPEListItems.TabIndex = 0;
             this.MCPPEListItems.DoubleClick += new System.EventHandler(this.MCPPEListItems_DoubleClick);
             // 
@@ -4569,6 +4685,7 @@
             // groupBox51
             // 
             this.groupBox51.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox51.Controls.Add(this.MCProLabelCreateOrEdit);
             this.groupBox51.Controls.Add(this.MCProTextActionMessage);
             this.groupBox51.Location = new System.Drawing.Point(6, 578);
             this.groupBox51.Name = "groupBox51";
@@ -4576,6 +4693,15 @@
             this.groupBox51.TabIndex = 13;
             this.groupBox51.TabStop = false;
             this.groupBox51.Text = "Message";
+            // 
+            // MCProLabelCreateOrEdit
+            // 
+            this.MCProLabelCreateOrEdit.AutoSize = true;
+            this.MCProLabelCreateOrEdit.ForeColor = System.Drawing.Color.Red;
+            this.MCProLabelCreateOrEdit.Location = new System.Drawing.Point(6, 107);
+            this.MCProLabelCreateOrEdit.Name = "MCProLabelCreateOrEdit";
+            this.MCProLabelCreateOrEdit.Size = new System.Drawing.Size(0, 13);
+            this.MCProLabelCreateOrEdit.TabIndex = 4;
             // 
             // MCProTextActionMessage
             // 
@@ -4587,7 +4713,7 @@
             this.MCProTextActionMessage.Location = new System.Drawing.Point(6, 19);
             this.MCProTextActionMessage.Multiline = true;
             this.MCProTextActionMessage.Name = "MCProTextActionMessage";
-            this.MCProTextActionMessage.Size = new System.Drawing.Size(149, 100);
+            this.MCProTextActionMessage.Size = new System.Drawing.Size(149, 73);
             this.MCProTextActionMessage.TabIndex = 3;
             // 
             // TabControlMeterPro
@@ -4707,6 +4833,8 @@
             // 
             // MCTextProCallCountUnit
             // 
+            this.MCTextProCallCountUnit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MCTextProCallCountUnit.Location = new System.Drawing.Point(609, 45);
             this.MCTextProCallCountUnit.Name = "MCTextProCallCountUnit";
             this.MCTextProCallCountUnit.Size = new System.Drawing.Size(105, 20);
@@ -4902,6 +5030,8 @@
             // 
             // MCTextProCommerceMeterID
             // 
+            this.MCTextProCommerceMeterID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MCTextProCommerceMeterID.Location = new System.Drawing.Point(389, 19);
             this.MCTextProCommerceMeterID.Name = "MCTextProCommerceMeterID";
             this.MCTextProCommerceMeterID.Size = new System.Drawing.Size(325, 20);
@@ -5046,6 +5176,8 @@
             // 
             this.groupBox40.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox40.Controls.Add(this.MCProBtnEdit);
+            this.groupBox40.Controls.Add(this.MCProBtnCreate);
             this.groupBox40.Controls.Add(this.MCProBtnLoadFromLocal);
             this.groupBox40.Controls.Add(this.MCProBtnDeleteFromPPEBlob);
             this.groupBox40.Controls.Add(this.MCProListItems);
@@ -5056,6 +5188,28 @@
             this.groupBox40.TabIndex = 9;
             this.groupBox40.TabStop = false;
             this.groupBox40.Text = "Action and Review";
+            // 
+            // MCProBtnEdit
+            // 
+            this.MCProBtnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.MCProBtnEdit.Location = new System.Drawing.Point(88, 508);
+            this.MCProBtnEdit.Name = "MCProBtnEdit";
+            this.MCProBtnEdit.Size = new System.Drawing.Size(70, 23);
+            this.MCProBtnEdit.TabIndex = 18;
+            this.MCProBtnEdit.Text = "Edit";
+            this.MCProBtnEdit.UseVisualStyleBackColor = true;
+            this.MCProBtnEdit.Click += new System.EventHandler(this.MCProBtnEdit_Click);
+            // 
+            // MCProBtnCreate
+            // 
+            this.MCProBtnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.MCProBtnCreate.Location = new System.Drawing.Point(6, 508);
+            this.MCProBtnCreate.Name = "MCProBtnCreate";
+            this.MCProBtnCreate.Size = new System.Drawing.Size(70, 23);
+            this.MCProBtnCreate.TabIndex = 17;
+            this.MCProBtnCreate.Text = "Create";
+            this.MCProBtnCreate.UseVisualStyleBackColor = true;
+            this.MCProBtnCreate.Click += new System.EventHandler(this.MCProBtnCreate_Click);
             // 
             // MCProBtnLoadFromLocal
             // 
@@ -5088,7 +5242,7 @@
             this.MCProListItems.FormattingEnabled = true;
             this.MCProListItems.Location = new System.Drawing.Point(6, 77);
             this.MCProListItems.Name = "MCProListItems";
-            this.MCProListItems.Size = new System.Drawing.Size(152, 454);
+            this.MCProListItems.Size = new System.Drawing.Size(152, 424);
             this.MCProListItems.TabIndex = 3;
             this.MCProListItems.DoubleClick += new System.EventHandler(this.MCProListItems_DoubleClick);
             // 
@@ -5107,6 +5261,15 @@
             // OpenFileDialog
             // 
             this.OpenFileDialog.FileName = "openFileDialog1";
+            // 
+            // ECLabelCreateOrEdit
+            // 
+            this.ECLabelCreateOrEdit.AutoSize = true;
+            this.ECLabelCreateOrEdit.ForeColor = System.Drawing.Color.Red;
+            this.ECLabelCreateOrEdit.Location = new System.Drawing.Point(6, 137);
+            this.ECLabelCreateOrEdit.Name = "ECLabelCreateOrEdit";
+            this.ECLabelCreateOrEdit.Size = new System.Drawing.Size(0, 13);
+            this.ECLabelCreateOrEdit.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -5667,6 +5830,19 @@
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Button SCPPEBtnEdit;
+        private System.Windows.Forms.Button SCPPEBtnCreate;
+        private System.Windows.Forms.Button SCProBtnEdit;
+        private System.Windows.Forms.Button SCProBtnCreate;
+        private System.Windows.Forms.Button MCPPEBtnEdit;
+        private System.Windows.Forms.Button MCPPEBtnCreate;
+        private System.Windows.Forms.Button MCProBtnEdit;
+        private System.Windows.Forms.Button MCProBtnCreate;
+        private System.Windows.Forms.Label SCPPELabelCreateOrEdit;
+        private System.Windows.Forms.Label SCProLabelCreateOrEdit;
+        private System.Windows.Forms.Label MCPPELabelCreateOrEdit;
+        private System.Windows.Forms.Label MCProLabelCreateOrEdit;
+        private System.Windows.Forms.Label ECLabelCreateOrEdit;
     }
 }
 
