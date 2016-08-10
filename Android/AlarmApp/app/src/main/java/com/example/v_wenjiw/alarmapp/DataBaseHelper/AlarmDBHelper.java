@@ -11,7 +11,7 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
 
     final String CREATE_TABLE_SQL = "Create table Alarm(_id integer primary key autoincrement," +
             "title varchar(50)," +
-            "triggertime integer)";
+            "triggerTime int)";
 
     public AlarmDBHelper(Context context, String name, int version) {
         super(context, name, null, version);
