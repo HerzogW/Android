@@ -1,47 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/back2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/back2">
 
     <ListView
         android:id="@+id/musicList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/controls">
-    </ListView>
+        android:layout_above="@+id/seekBar"></ListView>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/controls"
+        android:layout_alignParentEnd="true"/>
 
     <RelativeLayout
         android:id="@+id/controls"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnProv"
-            android:text="上一首"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/btnPlay" />
+            android:layout_toStartOf="@+id/btnPlay"
+            android:text="上一首" />
+
         <Button
             android:id="@+id/btnPlay"
-            android:text="播放"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:text="播放" />
+
         <Button
             android:id="@+id/btnNext"
-            android:text="下一首"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/btnPlay" />
+            android:layout_toEndOf="@+id/btnPlay"
+            android:text="下一首" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLoop"
+            android:checked="false"
+            android:textColor="#fff"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+
     </RelativeLayout>
-
-
 
 
 </RelativeLayout>
