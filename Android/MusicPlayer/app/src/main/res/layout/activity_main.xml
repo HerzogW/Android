@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back2">
+    android:background="#000">
 
     <ListView
         android:id="@+id/musicList"
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/controls"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true" />
 
     <RelativeLayout
         android:id="@+id/controls"
@@ -30,7 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/btnPlay"
-            android:text="上一首" />
+            android:background="#000"
+            android:text="上一首"
+            android:textColor="#fff" />
 
         <Button
             android:id="@+id/btnPlay"
@@ -39,7 +41,9 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:text="播放" />
+            android:background="#000"
+            android:text="播放"
+            android:textColor="#fff" />
 
         <Button
             android:id="@+id/btnNext"
@@ -47,17 +51,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/btnPlay"
-            android:text="下一首" />
+            android:background="#000"
+            android:text="下一首"
+            android:textColor="#fff" />
 
         <Switch
+            android:id="@+id/btnLoop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnLoop"
-            android:checked="false"
-            android:textColor="#fff"
-            android:layout_marginRight="5dp"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_marginRight="5dp"
+            android:checked="false" />
 
     </RelativeLayout>
 

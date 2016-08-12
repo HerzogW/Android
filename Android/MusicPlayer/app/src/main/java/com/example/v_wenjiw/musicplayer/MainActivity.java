@@ -1,6 +1,7 @@
 package com.example.v_wenjiw.musicplayer;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -13,8 +14,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.view.MotionEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -32,7 +32,7 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     Button btnPrev, btnPlay, btnNext;
     ActivityReceiver activityReceiver;
@@ -44,8 +44,7 @@ public class MainActivity extends Activity {
     public static final String UPDATE_ACTION = "UPDATE_ACTION";
     private final int prev = 0, play = 1, pause = 2, next = 3, itemPlay = 4, loop = 5, position = 6;
     private int status = -1;
-    private int currentIndex = 0, maxIndex = 0;
-
+    private int currentIndex = -1, maxIndex = 0;
 
     private int titleId, singerId;
     MusicPlayerService.MusicBinder binder;
@@ -82,16 +81,16 @@ public class MainActivity extends Activity {
         this.registerReceiver(activityReceiver, filter);
 
         Intent serviceIntent = new Intent(MainActivity.this, MusicPlayerService.class);
-        startService(serviceIntent);
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (binder != null) {
-                    seekBar.setProgress(binder.getCurrentPosition());
-                }
-            }
-        }, 0, 100);
+        bindService(serviceIntent, conn, Service.BIND_AUTO_CREATE);
+//        timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                if (binder != null) {
+//                    seekBar.setProgress(binder.getCurrentPosition());
+//                }
+//            }
+//        }, 0, 1000);
 
         final ListView musicList = (ListView) findViewById(R.id.musicList);
         final Cursor cursor = resolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
@@ -176,9 +175,13 @@ public class MainActivity extends Activity {
                     int duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
                     seekBar.setMax(duration);
 
-                    View selectItem = musicList.getChildAt(i - musicList.getFirstVisiblePosition());
-                    if (selectItem != null) {
-                        selectItem.setBackgroundColor(Color.GREEN);
+                    for (int k = 0; k <= adapterView.getLastVisiblePosition() - adapterView.getFirstVisiblePosition(); k++) {
+                        View v = adapterView.getChildAt(k);
+                        if (k == i - adapterView.getFirstVisiblePosition()) {
+                            v.setBackgroundColor(Color.RED);
+                        } else {
+                            v.setBackgroundColor(Color.TRANSPARENT);
+                        }
                     }
 
                     Intent intent = new Intent(CTL_ACTION);
@@ -187,6 +190,22 @@ public class MainActivity extends Activity {
                     sendBroadcast(intent);
                 }
             });
+
+            musicList.setOnScrollListener(new AbsListView.OnScrollListener() {
+                                              @Override
+                                              public void onScrollStateChanged(AbsListView absListView, int i) {
+
+                                              }
+
+                                              @Override
+                                              public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                                                  if (absListView.getFirstVisiblePosition() <= currentIndex && absListView.getLastVisiblePosition() >= currentIndex) {
+                                                      View v = absListView.getChildAt(currentIndex - absListView.getFirstVisiblePosition());
+                                                      v.setBackgroundColor(Color.RED);
+                                                  }
+                                              }
+                                          }
+            );
         } else {
             Toast.makeText(MainActivity.this, "获取数据失败！", Toast.LENGTH_LONG).show();
         }
@@ -195,11 +214,16 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CTL_ACTION);
-                cursor.moveToPosition(currentIndex);
-                String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                intent.putExtra("path", path);
-                intent.putExtra("control", status == -1 ? itemPlay : status != play ? play : pause);
-                sendBroadcast(intent);
+                if (currentIndex < 0) {
+                    currentIndex = 0;
+                }
+
+                if (cursor != null && cursor.moveToPosition(currentIndex)) {
+                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                    intent.putExtra("path", path);
+                    intent.putExtra("control", status == -1 ? itemPlay : status != play ? play : pause);
+                    sendBroadcast(intent);
+                }
             }
         });
 
@@ -210,12 +234,13 @@ public class MainActivity extends Activity {
                     currentIndex = 0;
                 } else {
                     currentIndex--;
-                    cursor.moveToPosition(currentIndex);
-                    Intent intent = new Intent(CTL_ACTION);
-                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                    intent.putExtra("path", path);
-                    intent.putExtra("control", play);
-                    sendBroadcast(intent);
+                    if (cursor != null && cursor.moveToPosition(currentIndex)) {
+                        Intent intent = new Intent(CTL_ACTION);
+                        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                        intent.putExtra("path", path);
+                        intent.putExtra("control", play);
+                        sendBroadcast(intent);
+                    }
                 }
             }
         });
@@ -225,15 +250,17 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 if (currentIndex < maxIndex - 1) {
                     currentIndex++;
-                    cursor.moveToPosition(currentIndex);
-                    Intent intent = new Intent(CTL_ACTION);
-                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                    intent.putExtra("path", path);
-                    intent.putExtra("control", play);
-                    sendBroadcast(intent);
+                    if (cursor != null && cursor.moveToPosition(currentIndex)) {
+                        Intent intent = new Intent(CTL_ACTION);
+                        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                        intent.putExtra("path", path);
+                        intent.putExtra("control", play);
+                        sendBroadcast(intent);
+                    }
                 }
             }
         });
+
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

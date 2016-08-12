@@ -48,6 +48,17 @@ public class MusicPlayerService extends Service {
         serviceReceiver = new ServiceReceiver();
         IntentFilter filter = new IntentFilter(CTL_ACTION);
         registerReceiver(serviceReceiver, filter);
+
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                if(!loopFlag) {
+                    Intent intent = new Intent(UPDATE_ACTION);
+                    intent.putExtra("status", pause);
+                    sendBroadcast(intent);
+                }
+            }
+        });
     }
 
     @Override
@@ -87,7 +98,6 @@ public class MusicPlayerService extends Service {
                         player.prepare();
                         player.start();
                         status = 1;
-
 //                        new Timer().schedule(new TimerTask() {
 //                            @Override
 //                            public void run() {
@@ -103,7 +113,9 @@ public class MusicPlayerService extends Service {
                         player.setLooping(loopFlag);
                         break;
                     case position:
-                        player.seekTo(updatePosition);
+                        if(player.getDuration()!=0) {
+                            player.seekTo(updatePosition);
+                        }
                         break;
                 }
 
