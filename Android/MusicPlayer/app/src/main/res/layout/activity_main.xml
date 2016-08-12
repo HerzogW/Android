@@ -4,11 +4,21 @@
     android:layout_height="match_parent"
     android:background="#000">
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"
+        android:queryHint="歌曲名"
+        android:background="#dde"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
     <ListView
         android:id="@+id/musicList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/seekBar"></ListView>
+        android:layout_above="@+id/seekBar"
+        android:layout_below="@+id/searchView"></ListView>
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -65,6 +75,4 @@
             android:checked="false" />
 
     </RelativeLayout>
-
-
 </RelativeLayout>

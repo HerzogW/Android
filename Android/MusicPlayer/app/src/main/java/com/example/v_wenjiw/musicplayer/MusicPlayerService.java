@@ -33,11 +33,12 @@ public class MusicPlayerService extends Service {
     public static final String CTL_ACTION = "CTL_ACTION";
     public static final String UPDATE_ACTION = "UPDATE_ACTION";
 
-    MusicBinder binder = new MusicBinder();
+//    MusicBinder binder = new MusicBinder();
 
     @Override
     public IBinder onBind(Intent intent) {
-        return binder;
+//        return binder;
+        return null;
     }
 
     @Override
@@ -128,9 +129,9 @@ public class MusicPlayerService extends Service {
         }
     }
 
-    public class MusicBinder extends Binder {
-        public int getCurrentPosition() {
-            return player.getCurrentPosition();
-        }
-    }
+//    public class MusicBinder extends Binder {
+//        public int getCurrentPosition() {
+//            return player.getCurrentPosition();
+//        }
+//    }
 }

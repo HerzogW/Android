@@ -22,8 +22,11 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -35,11 +38,13 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     Button btnPrev, btnPlay, btnNext;
-    ActivityReceiver activityReceiver;
     SeekBar seekBar;
     Switch btnLoop;
+    SearchView searchView;
 
+    ActivityReceiver activityReceiver;
     Timer timer;
+
     public static final String CTL_ACTION = "CTL_ACTION";
     public static final String UPDATE_ACTION = "UPDATE_ACTION";
     private final int prev = 0, play = 1, pause = 2, next = 3, itemPlay = 4, loop = 5, position = 6;
@@ -47,18 +52,18 @@ public class MainActivity extends AppCompatActivity {
     private int currentIndex = -1, maxIndex = 0;
 
     private int titleId, singerId;
-    MusicPlayerService.MusicBinder binder;
-
-    private ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            binder = (MusicPlayerService.MusicBinder) service;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-        }
-    };
+//    MusicPlayerService.MusicBinder binder;
+//
+//    private ServiceConnection conn = new ServiceConnection() {
+//        @Override
+//        public void onServiceConnected(ComponentName name, IBinder service) {
+//            binder = (MusicPlayerService.MusicBinder) service;
+//        }
+//
+//        @Override
+//        public void onServiceDisconnected(ComponentName name) {
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         btnNext = (Button) findViewById(R.id.btnNext);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         btnLoop = (Switch) findViewById(R.id.btnLoop);
+        searchView = (SearchView) findViewById(R.id.searchView);
+        searchView.setSubmitButtonEnabled(true);
 
         titleId = TextView.generateViewId();
         singerId = TextView.generateViewId();
@@ -81,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
         this.registerReceiver(activityReceiver, filter);
 
         Intent serviceIntent = new Intent(MainActivity.this, MusicPlayerService.class);
-        bindService(serviceIntent, conn, Service.BIND_AUTO_CREATE);
+        startService(serviceIntent);
+//        bindService(serviceIntent, conn, Service.BIND_AUTO_CREATE);
 //        timer = new Timer();
 //        timer.schedule(new TimerTask() {
 //            @Override
@@ -141,26 +149,38 @@ public class MainActivity extends AppCompatActivity {
                     String musicName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
                     String musicSinger = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
 
-                    LinearLayout item = new LinearLayout(MainActivity.this);
-                    ViewGroup.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    item.setLayoutParams(params);
-                    item.setOrientation(LinearLayout.VERTICAL);
+//                    LinearLayout item = new LinearLayout(MainActivity.this);
+//                    ViewGroup.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                    item.setLayoutParams(params);
+//                    item.setOrientation(LinearLayout.VERTICAL);
+//
+//                    TextView itemName = new TextView(MainActivity.this);
+//                    itemName.setId(titleId);
+//                    itemName.setLayoutParams(params);
+//                    itemName.setText(musicName);
+//                    itemName.setTextSize(20);
+//                    itemName.setTextColor(Color.WHITE);
+//                    item.addView(itemName);
+//
+//                    TextView itemSinger = new TextView(MainActivity.this);
+//                    itemSinger.setId(singerId);
+//                    itemSinger.setLayoutParams(params);
+//                    itemSinger.setText(musicSinger);
+//                    itemSinger.setTextSize(12);
+//                    itemSinger.setTextColor(Color.WHITE);
+//                    item.addView(itemSinger);
+//
+//                    return item;
+                    LinearLayout item = (LinearLayout) getLayoutInflater().inflate(R.layout.musicitem, null);
 
-                    TextView itemName = new TextView(MainActivity.this);
-                    itemName.setId(titleId);
-                    itemName.setLayoutParams(params);
+                    ImageView itemImage = (ImageView) item.findViewById(R.id.imageView);
+                    itemImage.setImageResource(R.drawable.music_72);
+
+                    TextView itemName = (TextView) item.findViewById(R.id.musicName);
                     itemName.setText(musicName);
-                    itemName.setTextSize(20);
-                    itemName.setTextColor(Color.WHITE);
-                    item.addView(itemName);
 
-                    TextView itemSinger = new TextView(MainActivity.this);
-                    itemSinger.setId(singerId);
-                    itemSinger.setLayoutParams(params);
+                    TextView itemSinger = (TextView) item.findViewById(R.id.singerName);
                     itemSinger.setText(musicSinger);
-                    itemSinger.setTextSize(12);
-                    itemSinger.setTextColor(Color.WHITE);
-                    item.addView(itemSinger);
 
                     return item;
                 }
@@ -174,15 +194,7 @@ public class MainActivity extends AppCompatActivity {
                     String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                     int duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
                     seekBar.setMax(duration);
-
-                    for (int k = 0; k <= adapterView.getLastVisiblePosition() - adapterView.getFirstVisiblePosition(); k++) {
-                        View v = adapterView.getChildAt(k);
-                        if (k == i - adapterView.getFirstVisiblePosition()) {
-                            v.setBackgroundColor(Color.RED);
-                        } else {
-                            v.setBackgroundColor(Color.TRANSPARENT);
-                        }
-                    }
+                    resetListItems(adapterView, i);
 
                     Intent intent = new Intent(CTL_ACTION);
                     intent.putExtra("path", path);
@@ -230,15 +242,18 @@ public class MainActivity extends AppCompatActivity {
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentIndex <= 0) {
+                if (currentIndex < 0) {
                     currentIndex = 0;
+                    Toast.makeText(MainActivity.this, "前面木有了", Toast.LENGTH_SHORT).show();
+
                 } else {
                     currentIndex--;
                     if (cursor != null && cursor.moveToPosition(currentIndex)) {
+                        resetListItems(musicList, currentIndex);
                         Intent intent = new Intent(CTL_ACTION);
                         String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                         intent.putExtra("path", path);
-                        intent.putExtra("control", play);
+                        intent.putExtra("control", itemPlay);
                         sendBroadcast(intent);
                     }
                 }
@@ -246,52 +261,90 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (currentIndex < maxIndex - 1) {
-                    currentIndex++;
-                    if (cursor != null && cursor.moveToPosition(currentIndex)) {
-                        Intent intent = new Intent(CTL_ACTION);
-                        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                        intent.putExtra("path", path);
-                        intent.putExtra("control", play);
-                        sendBroadcast(intent);
-                    }
-                }
-            }
-        });
+                                       @Override
+                                       public void onClick(View view) {
+                                           if (currentIndex >= maxIndex - 1) {
+                                               Toast.makeText(MainActivity.this, "后面木有了", Toast.LENGTH_SHORT).show();
+                                           } else {
+                                               currentIndex++;
+                                               if (cursor != null && cursor.moveToPosition(currentIndex)) {
+                                                   resetListItems(musicList, currentIndex);
+                                                   Intent intent = new Intent(CTL_ACTION);
+                                                   String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                                                   intent.putExtra("path", path);
+                                                   intent.putExtra("control", itemPlay);
+                                                   sendBroadcast(intent);
+                                               }
+                                           }
+                                       }
+                                   }
+
+        );
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                Intent updatePositionIntent = new Intent(CTL_ACTION);
-                updatePositionIntent.putExtra("control", position);
-                updatePositionIntent.putExtra("updatePosition", i);
-                sendBroadcast(updatePositionIntent);
-            }
+                                               @Override
+                                               public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                                                   Intent updatePositionIntent = new Intent(CTL_ACTION);
+                                                   updatePositionIntent.putExtra("control", position);
+                                                   updatePositionIntent.putExtra("updatePosition", i);
+                                                   sendBroadcast(updatePositionIntent);
+                                               }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                                               @Override
+                                               public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                                               }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                                               @Override
+                                               public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-        });
+                                               }
+                                           }
+
+        );
 
         btnLoop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                               @Override
+                                               public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                                                   Toast.makeText(MainActivity.this, btnLoop.isChecked() ? "单曲循环" : "单曲播放", Toast.LENGTH_SHORT).show();
+                                                   Intent intent = new Intent(CTL_ACTION);
+                                                   intent.putExtra("control", loop);
+                                                   intent.putExtra("loop", btnLoop.isChecked());
+                                                   sendBroadcast(intent);
+                                               }
+                                           }
+
+        );
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Toast.makeText(MainActivity.this, btnLoop.isChecked() ? "单曲循环" : "单曲播放", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(CTL_ACTION);
-                intent.putExtra("control", loop);
-                intent.putExtra("loop", btnLoop.isChecked());
-                sendBroadcast(intent);
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
+    }
+
+    private void resetListItems(AdapterView<?> listView, int selectedPosition) {
+        for (int k = 0; k <= listView.getLastVisiblePosition() - listView.getFirstVisiblePosition(); k++) {
+            View v = listView.getChildAt(k);
+            if (k == selectedPosition - listView.getFirstVisiblePosition()) {
+                v.setBackgroundColor(Color.RED);
+            } else {
+                v.setBackgroundColor(Color.TRANSPARENT);
+            }
+        }
+
+        if (listView.getFirstVisiblePosition() > selectedPosition) {
+            listView.setSelection(selectedPosition);
+        } else if (listView.getLastVisiblePosition() < selectedPosition) {
+            listView.setSelection(selectedPosition);
+        }
     }
 
     public class ActivityReceiver extends BroadcastReceiver {
